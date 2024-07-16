@@ -1,81 +1,90 @@
 package io.github.cutelights.sdk;
 
 public class Light {
-    private static native void _setOn(long ptr, boolean on);
-
-    private static native void _setBrightness(long ptr, int brightness);
-
-    private static native void _setColor(long ptr, int red, int green, int blue);
-
-    private static native boolean _getIsOn(long ptr);
-
-    private static native int _getBrightness(long ptr);
-
-    private static native int _getRed(long ptr);
-
-    private static native int _getGreen(long ptr);
-
-    private static native int _getBlue(long ptr);
-
-    private static native String _getId(long ptr);
-
-    private static native String _getName(long ptr);
-
-    private static native String _free(long ptr);
 
     static {
         System.loadLibrary("cute_lights_java_sdk");
     }
 
-    private long ptr;
+    public static native boolean nativeSetOn(long lightPointer, boolean on);
 
-    public Light(long ptr) {
-        this.ptr = ptr;
-        System.out.println("Light created with ptr: " + ptr);
+    public static native boolean nativeSetBrightness(long lightPointer, int brightness);
+
+    public static native boolean nativeSetColor(long lightPointer, int red, int green, int blue);
+
+    public static native String nativeGetName(long lightPointer);
+
+    public static native boolean nativeGetIsOn(long lightPointer);
+
+    public static native int nativeGetBrightness(long lightPointer);
+
+    public static native boolean nativeGetSupportedColor(long lightPointer);
+
+    public static native int nativeGetRed(long lightPointer);
+
+    public static native int nativeGetGreen(long lightPointer);
+
+    public static native int nativeGetBlue(long lightPointer);
+
+    public static native String nativeGetId(long lightPointer);
+
+    public static native void nativeFree(long lightPointer);
+
+    private long lightPointer;
+
+    public long getPointer() {
+        return lightPointer;
     }
 
-    public void setOn(boolean on) {
-        _setOn(ptr, on);
+    public Light(long lightPointer) {
+        this.lightPointer = lightPointer;
     }
 
-    public void setBrightness(int brightness) {
-        _setBrightness(ptr, brightness);
+    public boolean setOn(boolean on) {
+        return nativeSetOn(lightPointer, on);
     }
 
-    public void setColor(int red, int green, int blue) {
-        _setColor(ptr, red, green, blue);
+    public boolean setBrightness(int brightness) {
+        return nativeSetBrightness(lightPointer, brightness);
     }
 
-    public boolean getIsOn() {
-        return _getIsOn(ptr);
-    }
-
-    public int getBrightness() {
-        return _getBrightness(ptr);
-    }
-
-    public int getRed() {
-        return _getRed(ptr);
-    }
-
-    public int getGreen() {
-        return _getGreen(ptr);
-    }
-
-    public int getBlue() {
-        return _getBlue(ptr);
-    }
-
-    public String getId() {
-        return _getId(ptr);
+    public boolean setColor(int red, int green, int blue) {
+        return nativeSetColor(lightPointer, red, green, blue);
     }
 
     public String getName() {
-        return _getName(ptr);
+        return nativeGetName(lightPointer);
     }
 
-    @Override
-    public void finalize() {
-        _free(ptr);
+    public boolean getIsOn() {
+        return nativeGetIsOn(lightPointer);
+    }
+
+    public int getBrightness() {
+        return nativeGetBrightness(lightPointer);
+    }
+
+    public boolean getSupportedColor() {
+        return nativeGetSupportedColor(lightPointer);
+    }
+
+    public int getRed() {
+        return nativeGetRed(lightPointer);
+    }
+
+    public int getGreen() {
+        return nativeGetGreen(lightPointer);
+    }
+
+    public int getBlue() {
+        return nativeGetBlue(lightPointer);
+    }
+
+    public String getId() {
+        return nativeGetId(lightPointer);
+    }
+
+    public void free() {
+        nativeFree(lightPointer);
     }
 }
