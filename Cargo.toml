@@ -1,0 +1,16 @@
+[package]
+name = "java-sdk"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+j4rs = "0.20.0"
+j4rs_derive = "0.1.1"
+serde = { version = "1.0.204", features = ["derive"] }
+tokio = { version = "1.38.1", features = ["full"] }
+cute_lights = { git = "https://github.com/cute-lights/rust-sdk", branch = "main" }
+
+[lib]
+crate-type = ["cdylib"]
+path = "src/main/rust/lib.rs"
+name = "cute_lights_java_sdk"
