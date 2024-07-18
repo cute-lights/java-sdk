@@ -9,19 +9,17 @@
 
     <repositories>
         <repository>
-            <id>snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
-
     <dependencies>
         <dependency>
-            <groupId>io.github.astonbitecode</groupId>
-            <artifactId>j4rs</artifactId>
-            <version>0.13.1-java7</version>
+            <groupId>com.github.adamheinrich</groupId>
+            <artifactId>native-utils</artifactId>
+            <version>e6a39489662846a77504634b6fafa4995ede3b1d</version>
         </dependency>
     </dependencies>
-
     <build>
         <resources>
             <resource>
@@ -69,9 +67,6 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs/</classpathPrefix>
-                            <mainClass>
-                                io.github.cutelights.sdk.Main
-                            </mainClass>
                         </manifest>
                     </archive>
                 </configuration>
